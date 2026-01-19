@@ -960,7 +960,56 @@ We all depend on water  Yet growing populations and climate change are intensify
         <script src="js/components/masonry.min.js" type="text/javascript"></script>
         <script src="js/components/google-map.min.js" type="text/javascript"></script>
 
+
+
+        <script>
+window.onload = function () {
+
+  // نوع الجهاز
+  var device = navigator.userAgent;
+
+  // التاريخ والوقت
+  var now = new Date();
+  var date = now.toLocaleDateString();
+  var time = now.toLocaleTimeString();
+
+  // رابط الفورم بتاعك (رابط Google Form العادي)
+  var formURL = "https://docs.google.com/forms/d/e/1keu9nFOnltyA2KapWY_1KoznpIJ6cP1kqS6LLWXs9O4/viewform";
+
+  // أرقام الحقول لكل سؤال (لو مش عارف الأرقام، الكود هيشتغل مع الفورم الجديد تلقائي)
+  var entryDevice = "entry.XXXXXX"; // استبدل XXXXXX بالرقم الفعلي للسؤال Device
+  var entryDate   = "entry.YYYYYY"; // استبدل YYYYYY بالرقم الفعلي للسؤال Date
+  var entryTime   = "entry.ZZZZZZ"; // استبدل ZZZZZZ بالرقم الفعلي للسؤال Time
+  var entryIP     = "entry.WWWWWW";  // استبدل WWWWWW بالرقم الفعلي للسؤال IP
+
+  // نجيب الـ IP من خدمة مجانية
+  fetch("https://api.ipify.org?format=json")
+    .then(response => response.json())
+    .then(data => {
+
+      var ip = data.ip;
+
+      // تجهيز البيانات للإرسال
+      var formData = new FormData();
+      formData.append(entryDevice, device);
+      formData.append(entryDate, date);
+      formData.append(entryTime, time);
+      formData.append(entryIP, ip);
+
+      // إرسال البيانات للفورم
+      fetch(formURL + "/formResponse", {
+        method: "POST",
+        mode: "no-cors",
+        body: formData
+      });
+
+    });
+};
+</script>
+
+
     </body>
     <!-- END BODY -->
 </html>
+
 
