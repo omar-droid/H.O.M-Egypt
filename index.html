@@ -962,37 +962,10 @@ We all depend on water  Yet growing populations and climate change are intensify
 
 
 
-      <script>
-window.onload = function () {
-
-  var device = navigator.userAgent;
-  var now = new Date();
-
-  var data = {
-    device: device,
-    date: now.toLocaleDateString(),
-    time: now.toLocaleTimeString(),
-    ip: ""
-  };
-
-  fetch("https://api.ipify.org?format=json")
-    .then(r => r.json())
-    .then(ipData => {
-      data.ip = ipData.ip;
-
-      fetch("https://script.google.com/macros/s/AKfycbx0n13XS1q-qE2hyyJJIMw8zbdALZsDILmuhPdTxEqKlHjd2OIc3gNxfPqSRT9SgTv3/exec", {
-        method: "POST",
-        body: JSON.stringify(data)
-      });
-    });
-};
-</script>
-
-
-
     </body>
     <!-- END BODY -->
 </html>
+
 
 
 
